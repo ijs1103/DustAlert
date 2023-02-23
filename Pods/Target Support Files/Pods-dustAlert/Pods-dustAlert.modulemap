@@ -1,0 +1,6 @@
+framework module Pods_dustAlert {
+  umbrella header "Pods-dustAlert-umbrella.h"
+
+  export *
+  module * { export * }
+}
