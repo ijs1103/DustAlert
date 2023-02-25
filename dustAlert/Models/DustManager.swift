@@ -21,6 +21,11 @@ final class DustManager {
         return dbManager.getMyZoneDustFromDB()
     }
     func getLikeDust() -> [Dust] {
+        if likeDust.count > 0 {
+            likeDust.sort { a,b in
+                a.location! > b.location!
+            }
+        }
         return likeDust
     }
     func updateLocationsFromDB() {
@@ -41,9 +46,6 @@ final class DustManager {
                             $0.location == location
                         }!
                         self.likeDust.append(newDust)
-                        self.likeDust.sort { a,b in
-                            a.location! > b.location!
-                        }
                         completion()
                     case let .failure(error):
                         debugPrint("fetch failed. error: \(error)")
